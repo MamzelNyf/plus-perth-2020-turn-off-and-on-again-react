@@ -48,7 +48,7 @@ function OrganisationForm() {
             window.localStorage.setItem("organisation", data.slug) 
             return data
     }catch (error) {
-        alert("Network error", error.message)
+        // alert("Network error", error.message)
     }
 }
 
@@ -65,7 +65,7 @@ const handleSubmit = (e) => {
     }) 
 } else {
     console.log("Not all data there");
-    alert("Please fill out all fields");
+    // alert("Please fill out all fields");
 }
 }
 
