@@ -40,8 +40,9 @@ function OrganisationForm() {
                 method: "put",
                 headers: {
                     Authorization: `token ${token}`,
+                    "Content-Type": "application/json",
                 },
-                body: JSON.parse(`{"organisation":"${org}"}`) ,
+                body: org ,
             }
             );
             window.localStorage.setItem("organisation", data.slug) 
