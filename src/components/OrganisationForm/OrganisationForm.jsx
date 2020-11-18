@@ -41,7 +41,7 @@ function OrganisationForm() {
                 headers: {
                     Authorization: `token ${token}`,
                 },
-                body: org ,
+                body: JSON.parse(`{"organisation":"${org}"}`) ,
             }
             );
             window.localStorage.setItem("organisation", data.slug) 

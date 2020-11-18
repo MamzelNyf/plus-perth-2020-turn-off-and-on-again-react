@@ -1,5 +1,7 @@
 import React, { useState, useEffect } from "react"
 import { useParams, Link } from "react-router-dom"
+import ReactLoading from "react-loading"
+
 
 function OrganisationDetailPage() {
   const [organisationData, setorganisationData] = useState({
@@ -46,7 +48,7 @@ function OrganisationDetailPage() {
   // }
 
   if (organisationData.loading) {
-    return "Loading ..."
+      return  <ReactLoading className = "bubbles" type = { "Bubbles" } color = { "#FE4A49" }/>
   }
 
   return (
