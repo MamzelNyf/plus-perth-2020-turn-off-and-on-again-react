@@ -1,12 +1,17 @@
 import React, { useState, useEffect } from "react"
 import { useParams, Link } from "react-router-dom"
 import ReactLoading from "react-loading"
+import OpportunityCard from "../components/OpportunityCard/OpportunityCard";
+
 
 
 function OrganisationDetailPage() {
   const [organisationData, setorganisationData] = useState({
     loading: true,
   })
+  const [opportunityList, setOpportunityList] = useState({
+    loading: true
+  });
   const { slug } = useParams()
 
   useEffect(() => {
@@ -20,6 +25,21 @@ function OrganisationDetailPage() {
         setorganisationData(data)
       })
   }, [slug])
+
+  useEffect(() => {
+    fetch(`${process.env.REACT_APP_API_URL}listing/`)
+        .then((results) => {
+            return results.json();
+        })
+        .then((data) => {
+            setOpportunityList(data);
+        });
+}, []);
+
+if (opportunityList.loading) {
+    return  <ReactLoading className = "bubbles" type = { "Bubbles" } color = { "#FE4A49" }/>
+}
+
 
   //show edit button if the logged in user organisation is the same as the page loaded
   //or if admin is logged in
@@ -59,7 +79,18 @@ function OrganisationDetailPage() {
           <a href={organisationData.website}>{organisationData.website}</a>
           <p>{organisationData.description}</p>
           {canEdit ? <Link className="button-link" to={`/organisations/${slug}/edit`}>Edit</Link> : ""}
-            
+          <br/>
+          <h3>My opportunities:</h3>
+            <div  >
+                {opportunityList.map((opportunityData, key) => {
+                  if(opportunityData.organisation === organisationData.slug){
+                    console.log(opportunityData.organisation)
+                    console.log(organisationData.slug)
+                    return <OpportunityCard key={key} opportunityData={opportunityData}/>;}
+                    else {return null}
+                    }) 
+                } 
+          </div> 
         </div>
     </div>
 

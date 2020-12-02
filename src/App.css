@@ -73,7 +73,7 @@ html {
   scroll-behavior: smooth;
   background-color: white!important;
   height:100%;
-
+  overscroll-behavior: none;
 }
 
 body {
@@ -83,8 +83,16 @@ body {
   line-height: 1.6;
   background-color: white!important;
   min-height: 100%;
+  overscroll-behavior: none;
 }
-
+.App {
+  display: flex;
+  flex-direction: column;
+}
+.main{
+  flex: 1 0 auto;
+  min-height:calc(100vh - 70px);
+}
 img {
   display: block;
   max-width: 100%;
@@ -232,6 +240,7 @@ footer{
   justify-content: center;
   flex-direction: column;
   padding: 0 10px;
+  flex-shrink: 0;
 }
 footer .navbar-link{
   border:none;

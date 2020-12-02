@@ -43,7 +43,8 @@ function App() {
 
   return (
     <Router>
-      <div>
+      <div classname="App">
+        <div className="main">
         <Nav loggedIn={loggedIn} setUsername={setUsername} setOrganisation={setOrganisation} />
         <Switch>
           <Route path="/about" exact>
@@ -97,6 +98,7 @@ function App() {
             <HomePage loggedIn={loggedIn}/>
           </Route>
         </Switch>
+        </div>
         <Footer />
       </div>
     </Router>
